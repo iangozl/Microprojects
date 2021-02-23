@@ -18,28 +18,32 @@ letter = 'aa'
 huge_list = []
 counter = 0
 
-
 with open('sowpods.txt', "r") as f:
     huge_list = f.read().split()
 
 word = huge_list[random.randint(0, len(huge_list))]
 
+# Creating an empty list with determined length
+guessed_word = ['_'] * len(word) 
+
 while counter <=6:
     
-    letter = input("Enter a letter: ")
-    if letter.upper() in word:
-        
-        print("There's a match!")
+    letter = input("Enter a letter: ").upper()
+    if letter in word:
 
-        for x in word:
-                print(x)
-            else:
-                print('_ ')
-    
+        print("There's a match!")
+        
+        letter_index = word.index(letter)
+        guessed_word[letter_index] = letter
+
+        # Prints the whole list in one line.
+        print(*guessed_word)
+
     else:
         print("Nah! Try again!")
     counter+=1
 
+print("The word was :", word)
 # Verification stage
 """
 while len(letter) > 1:
