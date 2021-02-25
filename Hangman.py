@@ -23,22 +23,32 @@ with open('sowpods.txt', "r") as f:
 
 word = huge_list[random.randint(0, len(huge_list))]
 
-# Creating an empty list with determined length
-guessed_word = ['_'] * len(word) 
+# Creating an empty list with determined length AND character
+guessed_word = ['_'] * len(word)
 
 while counter <=6:
-    
-    letter = input("Enter a letter: ").upper()
-    if letter in word:
+
+    input_letter = input("Enter a letter: ").upper()
+
+    # Check if the input_letter is in the word
+    if input_letter in word:
 
         print("There's a match!")
         
-        letter_index = word.index(letter)
-        guessed_word[letter_index] = letter
+        # Find the index of the letter:
+        index = word.index(input_letter)
 
-        # Prints the whole list in one line.
-        print(*guessed_word)
+        # If the space is empty, then replace it
+        if guessed_word[index] == '_':
+        
+            guessed_word[index] = input_letter
 
+            # * Prints the whole list in one line.
+            print(*guessed_word)
+        
+        else:
+            print('Try another letter, this is already taken!')
+            
     else:
         print("Nah! Try again!")
     counter+=1
