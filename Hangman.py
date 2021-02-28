@@ -14,46 +14,81 @@ ascii_letters = string.ascii_letters
 
 # Variable declaration
 
-letter = 'aa'
 huge_list = []
 counter = 0
+winning_code = 0
 
 with open('sowpods.txt', "r") as f:
     huge_list = f.read().split()
 
-word = huge_list[random.randint(0, len(huge_list))]
+#word = huge_list[random.randint(0, len(huge_list))]
+word = "AMA"
 
 # Creating an empty list with determined length AND character
 guessed_word = ['_'] * len(word)
 
-while counter <=6:
+while counter < 6:
 
-    input_letter = input("Enter a letter: ").upper()
+    input_char = input("Enter a letter: ").upper()
 
-    # Check if the input_letter is in the word
-    if input_letter in word:
+    # Check if the INPUT_CHAR is equal to 1 character or not
 
-        print("There's a match!")
-        
-        # Find the index of the letter:
-        index = word.index(input_letter)
+    if len(input_char) > 1:
 
-        # If the space is empty, then replace it
-        if guessed_word[index] == '_':
-        
-            guessed_word[index] = input_letter
+        if input_char == word:
+            print('You guessed the word! CONGRATULATIONS!')
+            winning_code = 1
+            break
 
-            # * Prints the whole list in one line.
-            print(*guessed_word)
-        
         else:
-            print('Try another letter, this is already taken!')
-            
-    else:
-        print("Nah! Try again!")
-    counter+=1
+            print('Sorry! Try Again!')
+        
+     # Check if the input_char is in the word
+    elif len(input_char) == 1:  
+        
+        # Making a list of all repeated indexes    
+        list_indexes = [idx for idx, char in enumerate(word) if char == input_char]
 
-print("The word was :", word)
+        if len(list_indexes) > 0: 
+
+            # Find the index of the input_char:
+            index = word.index(input_char)
+
+            print("There's a match!")
+
+            for index in list_indexes:
+                 # If the space is empty, then replace it
+                    if guessed_word[index] == '_':
+        
+                        guessed_word[index] = input_char
+
+                    # * Prints the whole list in one line.
+                        print(*guessed_word)
+                    
+  
+                    else:
+                        print('Try another letter, this is already taken!')
+
+            """
+            elif guessed_word[index] == input_char:
+                index = word.find(input_char, index + 1)
+                guessed_word[index] = input_char
+
+                # * Prints the whole list in one line.
+                print(*guessed_word)
+            """
+
+            
+            
+        else:
+            print("Nah! Try again!")
+    counter+=1
+    print(6 - counter,"tries left")
+
+if winning_code == 0:
+    print("The word was :", word)
+
+
 # Verification stage
 """
 while len(letter) > 1:
