@@ -10,8 +10,6 @@ import random
 
 print ("Guess the word or the guy dies")
 
-ascii_letters = string.ascii_letters
-
 # Variable declaration
 
 huge_list = []
@@ -22,14 +20,16 @@ with open('sowpods.txt', "r") as f:
     huge_list = f.read().split()
 
 word = huge_list[random.randint(0, len(huge_list))]
-#word = "AMA"
+#word = "AMA" <-- Test Word
 
 # Creating an empty list with determined length AND character
 guessed_word = ['_'] * len(word)
 
+print(*guessed_word)
+
 while counter < 6:
 
-    input_char = input("Enter a letter: ").upper()
+    input_char = input("\nEnter a letter: ").upper()
 
     # Check if the INPUT_CHAR is equal to 1 character or not
 
@@ -80,7 +80,8 @@ while counter < 6:
     print(6 - counter,"tries left")
 
 if winning_code == 0:
-    print("The word was :", word)
+    print("\nThe word was :", word)
+    print("YOU KILLED THE GUY!")
 
 
 
