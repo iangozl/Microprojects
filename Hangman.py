@@ -78,25 +78,6 @@ if winning_code == 0:
     print("The word was :", word)
 
 
-# Verification stage
-"""
-while len(letter) > 1:
-    letter = input ("Enter a letter: ")
-    
-    if len(letter) == 1 and letter.isnumeric() == False:
-        for x in ascii_letters:
-            if letter == x:
-                print("There's a match")
-            break
-    elif letter.isnumeric():
-        print("We don\'t like any numbers around here")
-    else:
-        print("Just enter one letter. Just one. Not any number nor special characters")
-
-"""
-
-
-
 
 
 
