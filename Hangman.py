@@ -43,7 +43,7 @@ while counter < 6:
         else:
             print('Sorry! Try Again!')
         
-    elif len(input_char) == 1:  
+    elif len(input_char) == 1:
         
         # Making a list of a character that is repeated in the word 
         list_indexes = [idx for idx, char in enumerate(word) if char == input_char]
