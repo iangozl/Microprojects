@@ -43,45 +43,34 @@ while counter < 6:
         else:
             print('Sorry! Try Again!')
         
-     # Check if the input_char is in the word
     elif len(input_char) == 1:  
         
-        # Making a list of all repeated indexes    
+        # Making a list of a character that is repeated in the word 
         list_indexes = [idx for idx, char in enumerate(word) if char == input_char]
 
-        if len(list_indexes) > 0: 
-
-            # Find the index of the input_char:
-            index = word.index(input_char)
-
+        # If it's greater than zero, that means it's not empty, then we can proceed with the other calculations
+        if len(list_indexes) > 0:            
+            
             print("There's a match!")
+            
+            loop_counter = 0
 
             for index in list_indexes:
-                 # If the space is empty, then replace it
-                    if guessed_word[index] == '_':
-        
-                        guessed_word[index] = input_char
 
+                # If the space is empty, then replace it
+                if guessed_word[index] == '_':
+                    guessed_word[index] = input_char
                     # * Prints the whole list in one line.
-                        print(*guessed_word)
-                    
-  
-                    else:
-                        print('Try another letter, this is already taken!')
+                    print(*guessed_word)
+                    break
 
-            """
-            elif guessed_word[index] == input_char:
-                index = word.find(input_char, index + 1)
-                guessed_word[index] = input_char
+                loop_counter += 1
+                
+                if loop_counter == len(list_indexes) and guessed_word[index] != '_': 
+                    print("Letter already taken")
 
-                # * Prints the whole list in one line.
-                print(*guessed_word)
-            """
-
-            
-            
         else:
-            print("Nah! Try again!")
+            print("Nah! This letter it's not in the word!")
     counter+=1
     print(6 - counter,"tries left")
 
