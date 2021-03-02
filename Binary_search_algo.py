@@ -18,8 +18,8 @@ number_list = [random.randint(0, 100) for x in range(100)]
 list_length = len(number_list)
 
 # Getting the middle index of the list
-
 middle_index = list_length//2
+
 
 # First half
 first_half = number_list[:middle_index]
@@ -28,3 +28,20 @@ print("\nFirst Half:", *first_half)
 # Second half
 second_half = number_list[middle_index:]
 print("\nSecond Half:", *second_half)
+
+
+# A counter
+
+counter = 0 
+
+# Trying to split the list 4 times
+for x in range(4):
+    
+    middle_index = len(number_list)//2
+
+    first_half = number_list[:middle_index]
+    print("\n", counter ,"Half:", *first_half)
+
+    number_list = first_half
+
+    counter +=1
