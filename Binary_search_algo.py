@@ -7,11 +7,24 @@ whether the middle element in that half is equal to the user’s number. This pr
 users number, or until the size of the subarray is 0, which means the users number isn't in the list.
 
 """
-
 import random
 
 # Making a list of 100 RANDOM numbers
 number_list = [random.randint(0, 100) for x in range(100)]
 
-print(*number_list)
-print("Number of elements", len(number_list))
+#print(*number_list)
+# print("Number of elements", len(number_list))
+
+list_length = len(number_list)
+
+# Getting the middle index of the list
+
+middle_index = list_length//2
+
+# First half
+first_half = number_list[:middle_index]
+print("\nFirst Half:", *first_half)
+
+# Second half
+second_half = number_list[middle_index:]
+print("\nSecond Half:", *second_half)
