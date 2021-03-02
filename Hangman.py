@@ -21,8 +21,8 @@ winning_code = 0
 with open('sowpods.txt', "r") as f:
     huge_list = f.read().split()
 
-#word = huge_list[random.randint(0, len(huge_list))]
-word = "AMA"
+word = huge_list[random.randint(0, len(huge_list))]
+#word = "AMA"
 
 # Creating an empty list with determined length AND character
 guessed_word = ['_'] * len(word)
@@ -68,6 +68,11 @@ while counter < 6:
                 
                 if loop_counter == len(list_indexes) and guessed_word[index] != '_': 
                     print("Letter already taken")
+
+            if guessed_word == list(word):
+                print("Congratulations! You've guessed the word!")
+                winning_code = 1
+                break
 
         else:
             print("Nah! This letter it's not in the word!")
