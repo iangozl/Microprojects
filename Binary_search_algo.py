@@ -37,8 +37,7 @@ counter = 0
 # Trying to split the list 4 times
 for x in range(4):
     
-    middle_index = len(number_list)//2
-
+    middle_index = len(number_list)//2.
     first_half = number_list[:middle_index]
     print("\n", counter ,"Half:", *first_half)
 
