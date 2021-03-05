@@ -14,7 +14,6 @@ random_number = random.randint(0, 1)
 # Making a list of 100 RANDOM numbers
 
 number_list = [x for x in range(random_number, 100, 2)] 
-random.shuffle(number_list) 
 
 print(*number_list)
 # print("Number of elements", len(number_list))
@@ -36,15 +35,35 @@ print("\nSecond Half:", *second_half)
 user_input = int(input("Enter a number between 0 and 100: "))
 
 # Check if the middle_index is the correct number
+
+"""
 if number_list[middle_index] == user_input:
     print("CONGRATULATIONS! YOU GUESSED THE NUMBER!")
 
 else: 
     print("Keep Trying!")
-
+"""
 # A counter
 
 counter = 0 
+
+def binarySearchIterative(the_list, number):
+    left = 0
+    right = len(the_list) - 1
+
+    while left <= right:
+        mid = right + left//2
+        if the_list[mid] == number:
+            return True
+        elif number < the_list[mid]:
+            right = mid - 1
+        else:
+            left = mid + 1
+            
+    return False
+     
+print(binarySearchIterative(number_list, user_input))
+
 """
 # Trying to split the list 4 times
 for x in range(4):
