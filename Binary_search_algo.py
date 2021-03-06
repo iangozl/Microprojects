@@ -17,21 +17,25 @@ second_random_number = random.randint(0,100)
 
 number_list = [x for x in range(random_number, second_random_number, 2)]
 
-print(*number_list) 
+# This list will show hints about the possible numbers in the list
+showed_list = ["_"] * len(number_list)
 
 # print("Number of elements", len(number_list))
 list_length = len(number_list)
 
-# Getting the middle index of the list
-middle_index = list_length//2
+print("Guess the number in the random list!")
 
-# First half
-first_half = number_list[:middle_index]
-print("\nFirst Half:", *first_half)
+for x in number_list:
+    so_random = random.randint(0,1)
+    if so_random == 1:
+        index = number_list.index(x)
+        showed_list[index] = x
 
-# Second half
-second_half = number_list[middle_index:]
-print("\nSecond Half:", *second_half)
+random.shuffle(showed_list)
+
+print("\nHere's a hint!")
+print(*showed_list)
+
 
 user_input = int(input("Enter a number between 0 and 100: "))
 
@@ -52,5 +56,7 @@ def binarySearchIterative(the_list, number):
 
 if binarySearchIterative(number_list, user_input) == True:
     print("You Guessed it! \nThe Number is in the list!")
+    print("\nHere's the original list")
+    print(*number_list)
 else:
     print("Number not found!")
