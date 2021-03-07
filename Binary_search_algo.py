@@ -29,12 +29,13 @@ while answer == 1:
     list_length = len(number_list)
     
 
-    print("Guess one of the missing numbers!")
+    print("\nGuess one of the missing numbers!")
 
     for x in number_list:
         so_random = random.randint(0,1)
-        if so_random == 1:
-            index = number_list.index(x)
+        index = number_list.index(x)
+        showed_list[index] = '_'
+        if so_random == 1:    
             showed_list[index] = x
 
     random.shuffle(showed_list)
@@ -42,7 +43,7 @@ while answer == 1:
     print("\nHere's a hint!")
     print(*showed_list)
 
-    user_input = int(input("Enter a number between 0 and 100: "))
+    user_input = int(input("\nEnter a number between 0 and 100: "))
 
     def binarySearchIterative(the_list, number):
         left = 0
@@ -66,16 +67,16 @@ while answer == 1:
             if x == '_':
                 index = showed_list.index(x)
                 showed_list[index] = user_input 
-        print("You Guessed it! \nThe Number is in the list!")
+        print("YOU GUESSED IT! \nThe Number is in the list!")
 
     else:
         print("Seems like this number is not in the list or it's already taken!")
 
     print("\nHere's the original list")
     print(*number_list)
-    
+
     answer = int(input("\nDo you want to continue? \n1. Yes \n2. No. \nEnter your answer: "))
     if answer == 2:
         break
     else:
-        answer = 1
+        continue
