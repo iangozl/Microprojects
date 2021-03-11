@@ -13,7 +13,6 @@ blockchain.addBlock(block)
 block = Block(transactions, asctime(), 1)
 blockchain.addBlock(block)
 
-
 block = Block(transactions, asctime(), 2)
 blockchain.addBlock(block)
 

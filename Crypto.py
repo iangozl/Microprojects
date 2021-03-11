@@ -76,6 +76,6 @@ class Transaction (object):
 		hashEncoded = json.dumps(hashString, sort_keys = True).encode();
 		return hashlib.sha256(hashEncoded).hexdigest(); #SHA256 Hash Encoding 
 
-	
+
 
 	
