@@ -4,7 +4,7 @@ window = tkinter.Tk()
 window.geometry("500x500")
 
 def hello():
-    print("Hello Mothafucka")
+    print("Hello World!")
 
 def characters():
     text = text_box.get()
