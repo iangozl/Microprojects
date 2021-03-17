@@ -10,6 +10,8 @@ def characters():
     text = text_box.get()
     label["text"] = text
 
+
+
 #Creating a label
 label = tkinter.Label(window)
 label.pack()

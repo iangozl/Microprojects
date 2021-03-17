@@ -1,31 +1,72 @@
-import tkinter
+from tkinter import *
 import calculations
 
-window = tkinter.Tk()
+root = Tk()
 
-window.geometry("300x400")
-window.title("End Of The World Calc")
+# root.geometry("300x400")
+root.title("End Of The World Calc")
 
 # Functions
 
-def test():
-    text_box.insert(0,"This is a test")
+def click(number):
+    #text_box.delete(0, END)
+    text_box.insert(END, number)
+
+def equals():
+    number_2 = int(text_box.get())
+    text_box.delete(0, END)
+    text_box.insert(0, number_1 + number_2)    
+
+def plus():
+    number = int(text_box.get())
+    global number_1
+    number_1 = number
+    text_box.delete(0, END)
+
+def clear():
+    text_box.delete(0,END)
 
 # Buttons
 
-plus_button = tkinter.Button(window, text = "+")
+sum_button = Button(root, text = "+", command = plus)
+equals_button = Button(root, text = "=", command = equals)
+clear_button = Button(root, text = "C", command = clear) 
 
-equals_button = tkinter.Button(window, text = "=", command = test)
+button1 = Button(root, text= "1", command = lambda: click(1))
+button2 = Button(root, text= "2", command = lambda: click(2))
+button3 = Button(root, text= "3", command = lambda: click(3))
+button4 = Button(root, text= "4", command = lambda: click(4))
+button5 = Button(root, text= "5", command = lambda: click(5))
+button6 = Button(root, text= "6", command = lambda: click(6))
+button7 = Button(root, text= "7", command = lambda: click(7))
+button8 = Button(root, text= "8", command = lambda: click(8))
+button9 = Button(root, text= "9", command = lambda: click(9))
+button0 = Button(root, text= "0", command = lambda: click(0))
 
 # Pack
 
-plus_button.pack()
-equals_button.pack()
+# sum_button.pack()
 
+# equals_button.pack()
+# clear_button.pack()
+# button2.pack()
+
+# button1.grid(row = , column =)
+# button2.grid(row = , column =)
+# button3.grid(row = , column =)
+
+button9.grid(row=1, column=0)
+button8.grid(row=1, column=1)
+button7.grid(row=1, column=2)
+
+button6.grid(row=2, column=0)
+button5.grid(row=2, column=1)
+button4.grid(row=2, column=2)
+# button0.grid(row = , column =)
 
 # Text Box
-text_box = tkinter.Entry(window,  )
+text_box = Entry(root)
 
-text_box.pack()
+text_box.grid(row = 0, columnspan = 3)
 
-window.mainloop()
+root.mainloop()
