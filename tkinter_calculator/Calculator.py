@@ -1,16 +1,14 @@
 from tkinter import *
 import calculations
-
 import sys, os
 
-program_directory=sys.path[0]
+program_directory=sys.path[0] # This is the path to this document
 
 root = Tk()
 
 root.geometry("450x200")
 root.title("Simple Calc")
 root.resizable(0,0) # This functions don't allow the windows to be resized
-
 icon = PhotoImage(file=os.path.join(program_directory,"sunglasses.png"))
 root.iconphoto(False, icon)
 
