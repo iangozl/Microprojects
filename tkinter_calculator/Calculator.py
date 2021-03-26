@@ -1,17 +1,18 @@
 from tkinter import *
 import calculations
-import os
+
+import sys, os
+
+program_directory=sys.path[0]
 
 root = Tk()
 
 root.geometry("450x200")
 root.title("Simple Calc")
-# root.iconbitmap(r'/glasses.ico') # r = raw string
 root.resizable(0,0) # This functions don't allow the windows to be resized
 
-icon = PhotoImage(file='glasses.ico')
-root.tk.call('wm', 'iconphoto', root._w, icon)  
-
+icon = PhotoImage(file=os.path.join(program_directory,"sunglasses.png"))
+root.iconphoto(False, icon)
 
 # Functions
 
