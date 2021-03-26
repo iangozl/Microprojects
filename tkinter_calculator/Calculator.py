@@ -1,10 +1,17 @@
 from tkinter import *
 import calculations
+import os
 
 root = Tk()
 
-# root.geometry("300x400")
-root.title("End Of The World Calc")
+root.geometry("450x200")
+root.title("Simple Calc")
+# root.iconbitmap(r'/glasses.ico') # r = raw string
+root.resizable(0,0) # This functions don't allow the windows to be resized
+
+icon = PhotoImage(file='glasses.ico')
+root.tk.call('wm', 'iconphoto', root._w, icon)  
+
 
 # Functions
 
