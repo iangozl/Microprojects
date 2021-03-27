@@ -1,12 +1,12 @@
 from tkinter import *
-import calculations
 import sys, os
+import math
 
 program_directory=sys.path[0] # This is the path to this document
 
 root = Tk()
 
-root.geometry("450x200")
+root.geometry("530x300")
 root.title("Simple Calc")
 root.resizable(0,0) # This functions don't allow the windows to be resized
 icon = PhotoImage(file=os.path.join(program_directory,"sunglasses.png"))
@@ -36,6 +36,8 @@ def equals():
 
     if operation == 3:
         result = number_1 / number_2
+
+    
     text_box.insert(0, result)
 
 def add():
@@ -72,36 +74,62 @@ def divide():
     text_box.delete(0,END)
     operation = 3
 
+def power():
+    global number_1
+    number_1 = float(text_box.get()) ** 2
+    text_box.delete(0,END)
+    text_box.insert(0,number_1)
+
+def square_root():
+    global number_1
+    number_1 = math.sqrt(float(text_box.get()))
+    text_box.delete(0,END)
+    text_box.insert(0,number_1)
+
+
 # Buttons
 
-add_button = Button(root, text = "+", command = add)
-equals_button = Button(root, text = "=", command = equals, width= 15, bg='green', fg='white')
-clear_button = Button(root, text = "C", command = clear)
-multiply_button = Button(root, text= "x", command = multiply)
-subtract_button = Button(root, text="-", command= subtract)
-divide_button = Button(root, text="/", command= divide)
+equals_button = Button(root, text="=", command = equals, width= 18, height=3, bg='green', fg='white')
+clear_button = Button(root, text="C", command = clear, width=7, height=3, bg='yellow')
+subtract_button = Button(root, text="-", command= subtract, width=7, height=3)
+divide_button = Button(root, text="/", command= divide, width=7, height=3)
+multiply_button = Button(root, text="x", command = multiply, width=7, height=3)
+add_button = Button(root, text="+", command = add, width=7, height=3)
+decimal_button = Button(root, text=".", command = lambda: click("."), width=7, height=3)
+percentage_button = Button(root, text="%", width=7, height=3)
+left_parenthesis_button = Button(root, text="(", width=7, height=3)
+right_parenthesis_button = Button(root, text=")", width=7, height=3)
+power_button = Button(root, text="x²", command= power,width=7, height=3)
+sqrt_button = Button(root, text="√", command= square_root,width=7, height=3)
+backspace_button = Button(root, text="<-",width=7, height=3)
 
-button1 = Button(root, text= "1", command = lambda: click(1))
-button2 = Button(root, text= "2", command = lambda: click(2))
-button3 = Button(root, text= "3", command = lambda: click(3))
-button4 = Button(root, text= "4", command = lambda: click(4))
-button5 = Button(root, text= "5", command = lambda: click(5))
-button6 = Button(root, text= "6", command = lambda: click(6))
-button7 = Button(root, text= "7", command = lambda: click(7))
-button8 = Button(root, text= "8", command = lambda: click(8))
-button9 = Button(root, text= "9", command = lambda: click(9))
-button0 = Button(root, text= "0", command = lambda: click(0))
+
+button1 = Button(root, text= "1", command = lambda: click(1), width=7, height=3)
+button2 = Button(root, text= "2", command = lambda: click(2), width=7, height=3)
+button3 = Button(root, text= "3", command = lambda: click(3), width=7, height=3)
+button4 = Button(root, text= "4", command = lambda: click(4), width=7, height=3)
+button5 = Button(root, text= "5", command = lambda: click(5), width=7, height=3)
+button6 = Button(root, text= "6", command = lambda: click(6), width=7, height=3)
+button7 = Button(root, text= "7", command = lambda: click(7), width=7, height=3)
+button8 = Button(root, text= "8", command = lambda: click(8), width=7, height=3)
+button9 = Button(root, text= "9", command = lambda: click(9), width=7, height=3)
+button0 = Button(root, text= "0", command = lambda: click(0), width=7, height=3)
 
 # Pack
 
-clear_button.grid(row=1, column=6)
-divide_button.grid(row=1, column=4)
-multiply_button.grid(row=2, column=4)
-subtract_button.grid(row=3, column=4)
-add_button.grid(row=4, column=4)
-equals_button.grid(row=4, column=5, columnspan= 2)
-
-# button2.pack()
+clear_button.grid(row=1, column=5)
+divide_button.grid(row=1, column=3)
+multiply_button.grid(row=2, column=3)
+subtract_button.grid(row=3, column=3)
+add_button.grid(row=4, column=3)
+equals_button.grid(row=4, column=4, columnspan= 2)
+decimal_button.grid(row=4, column=1)
+percentage_button.grid(row=4, column=2)
+left_parenthesis_button.grid(row=2, column=4)
+power_button.grid(row=3, column=4)
+right_parenthesis_button.grid(row=2, column=5)
+sqrt_button.grid(row=3, column=5)
+backspace_button.grid(row=1, column=4)
 
 button9.grid(row=1, column=0)
 button8.grid(row=1, column=1)
@@ -118,8 +146,8 @@ button1.grid(row=3, column=2)
 button0.grid(row=4, column=0)
 
 # Text Box
-text_box = Entry(root, width=50)
+text_box = Entry(root, width=65)
 
-text_box.grid(row = 0, columnspan = 6)
+text_box.grid(row = 0, columnspan = 7)
 
 root.mainloop()
