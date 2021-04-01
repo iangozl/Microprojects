@@ -91,7 +91,7 @@ def backspace():
     text_box.delete(index_number)
 
 def equation():
-    
+
     operation = text_box.get()
     if operation.find("("):
         operation = operation.replace("(", "*").replace(")","")
@@ -99,9 +99,6 @@ def equation():
 
     text_box.delete(0,END)
     text_box.insert(0,result)
-
-
-
 
 # Buttons
 
