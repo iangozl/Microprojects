@@ -86,6 +86,9 @@ def square_root():
     text_box.delete(0,END)
     text_box.insert(0,number_1)
 
+def backspace():
+    index_number = len(text_box.get()) - 1
+    text_box.delete(index_number)
 
 # Buttons
 
@@ -97,11 +100,11 @@ multiply_button = Button(root, text="x", command = multiply, width=7, height=3)
 add_button = Button(root, text="+", command = add, width=7, height=3)
 decimal_button = Button(root, text=".", command = lambda: click("."), width=7, height=3)
 percentage_button = Button(root, text="%", width=7, height=3)
-left_parenthesis_button = Button(root, text="(", width=7, height=3)
-right_parenthesis_button = Button(root, text=")", width=7, height=3)
+left_parenthesis_button = Button(root, text="(", command = lambda: click("("), width=7, height=3)
+right_parenthesis_button = Button(root, text=")", command = lambda: click(")"), width=7, height=3)
 power_button = Button(root, text="x²", command= power,width=7, height=3)
 sqrt_button = Button(root, text="√", command= square_root,width=7, height=3)
-backspace_button = Button(root, text="<-",width=7, height=3)
+backspace_button = Button(root, text="<-",command = backspace,width=7, height=3)
 
 
 button1 = Button(root, text= "1", command = lambda: click(1), width=7, height=3)
