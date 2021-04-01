@@ -90,9 +90,22 @@ def backspace():
     index_number = len(text_box.get()) - 1
     text_box.delete(index_number)
 
+def equation():
+    
+    operation = text_box.get()
+    if operation.find("("):
+        operation = operation.replace("(", "*").replace(")","")
+    result = eval(operation)
+
+    text_box.delete(0,END)
+    text_box.insert(0,result)
+
+
+
+
 # Buttons
 
-equals_button = Button(root, text="=", command = equals, width= 18, height=3, bg='green', fg='white')
+equals_button = Button(root, text="=", command = equation, width= 18, height=3, bg='green', fg='white')
 clear_button = Button(root, text="C", command = clear, width=7, height=3, bg='yellow')
 subtract_button = Button(root, text="-", command= subtract, width=7, height=3)
 divide_button = Button(root, text="/", command= divide, width=7, height=3)
