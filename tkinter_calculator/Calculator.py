@@ -37,7 +37,6 @@ def equals():
     if operation == 3:
         result = number_1 / number_2
 
-    
     text_box.insert(0, result)
 
 def add():
@@ -94,7 +93,9 @@ def equation():
 
     operation = text_box.get()
     if operation.find("("):
-        operation = operation.replace("(", "*").replace(")","")
+         operation = operation.replace("(", "*").replace(")","")
+    
+    print(operation)
     result = eval(operation)
 
     text_box.delete(0,END)
@@ -104,10 +105,10 @@ def equation():
 
 equals_button = Button(root, text="=", command = equation, width= 18, height=3, bg='green', fg='white')
 clear_button = Button(root, text="C", command = clear, width=7, height=3, bg='yellow')
-subtract_button = Button(root, text="-", command= subtract, width=7, height=3)
-divide_button = Button(root, text="/", command= divide, width=7, height=3)
-multiply_button = Button(root, text="x", command = multiply, width=7, height=3)
-add_button = Button(root, text="+", command = add, width=7, height=3)
+subtract_button = Button(root, text="-", command= lambda: click(" - "), width=7, height=3)
+divide_button = Button(root, text="/", command= lambda: click(" / "), width=7, height=3)
+multiply_button = Button(root, text="x", command = lambda: click(" * "), width=7, height=3)
+add_button = Button(root, text="+", command = lambda: click(" + "), width=7, height=3)
 decimal_button = Button(root, text=".", command = lambda: click("."), width=7, height=3)
 percentage_button = Button(root, text="%", width=7, height=3)
 left_parenthesis_button = Button(root, text="(", command = lambda: click("("), width=7, height=3)
@@ -115,7 +116,6 @@ right_parenthesis_button = Button(root, text=")", command = lambda: click(")"), 
 power_button = Button(root, text="x²", command= power,width=7, height=3)
 sqrt_button = Button(root, text="√", command= square_root,width=7, height=3)
 backspace_button = Button(root, text="<-",command = backspace,width=7, height=3)
-
 
 button1 = Button(root, text= "1", command = lambda: click(1), width=7, height=3)
 button2 = Button(root, text= "2", command = lambda: click(2), width=7, height=3)
