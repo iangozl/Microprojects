@@ -6,20 +6,20 @@ program_directory=sys.path[0] # This is the path to this document
 
 root = Tk()
 
-root.geometry("530x300")
+root.geometry("530x350")
 root.title("Simple Calc")
 root.resizable(0,0) # This functions don't allow the windows to be resized
 icon = PhotoImage(file=os.path.join(program_directory,"sunglasses.png"))
 root.iconphoto(False, icon)
 
-# Functions
+# Functionsa
 
 def click(number):
-    #text_box.delete(0, END)
+    #text_box.delete(0, END)                               
     text_box.insert(END, number)
 
 def equals():
-    global number_2 
+    global number_2
     
     number_2 = float(text_box.get())
 
@@ -46,60 +46,63 @@ def add():
     global operation
 
     number_1 = number
-    text_box.delete(0, END)
+    text_box.delete(1.0, END)
     operation = 0
 
 def clear():
-    text_box.delete(0,END)
+    text_box.delete(1.0,END)
 
 def multiply():
     global number_1
     global operation
     number_1 = float(text_box.get())    
-    text_box.delete(0,END)
+    text_box.delete(1.0,END)
     operation = 1
 
 def subtract():
     global number_1
     global operation
     number_1 = float(text_box.get())
-    text_box.delete(0,END)
+    text_box.delete(1.0,END)
     operation = 2
 
 def divide():
     global number_1
     global operation
     number_1 = float(text_box.get())
-    text_box.delete(0,END)
+    text_box.delete(1.0,END)
     operation = 3
 
 def power():
     global number_1
     number_1 = float(text_box.get()) ** 2
-    text_box.delete(0,END)
-    text_box.insert(0,number_1)
+    text_box.delete(1.0,END)
+    text_box.insert(1.0,number_1)
 
 def square_root():
     global number_1
     number_1 = math.sqrt(float(text_box.get()))
-    text_box.delete(0,END)
-    text_box.insert(0,number_1)
+    text_box.delete(1.0,END)
+    text_box.insert(1.0,number_1)
 
 def backspace():
     index_number = len(text_box.get()) - 1
     text_box.delete(index_number)
 
 def equation():
-
-    operation = text_box.get()
+    operation = text_box.get(1.0,END)
+    
     if operation.find("("):
          operation = operation.replace("(", "*").replace(")","")
     
     print(operation)
     result = eval(operation)
+    result2 = eval("(5)**2")
 
-    text_box.delete(0,END)
-    text_box.insert(0,result)
+    print(result2)
+
+    text_box.delete(1.0,END)
+    text_box.insert(1.0,result)
 
 # Buttons
 
@@ -113,8 +116,8 @@ decimal_button = Button(root, text=".", command = lambda: click("."), width=7, h
 percentage_button = Button(root, text="%", width=7, height=3)
 left_parenthesis_button = Button(root, text="(", command = lambda: click("("), width=7, height=3)
 right_parenthesis_button = Button(root, text=")", command = lambda: click(")"), width=7, height=3)
-power_button = Button(root, text="x²", command= power,width=7, height=3)
-sqrt_button = Button(root, text="√", command= square_root,width=7, height=3)
+power_button = Button(root, text="x²", command= lambda: click("**2") ,width=7, height=3)
+sqrt_button = Button(root, text="√", command= lambda: click("**0.5") ,width=7, height=3)
 backspace_button = Button(root, text="<-",command = backspace,width=7, height=3)
 
 button1 = Button(root, text= "1", command = lambda: click(1), width=7, height=3)
@@ -159,7 +162,7 @@ button1.grid(row=3, column=2)
 button0.grid(row=4, column=0)
 
 # Text Box
-text_box = Entry(root, width=65)
+text_box = Text(root, width=35, height=2, font = ("Helvetica", 20))
 
 text_box.grid(row = 0, columnspan = 7)
 
