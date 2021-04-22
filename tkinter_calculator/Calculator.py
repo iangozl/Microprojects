@@ -12,7 +12,7 @@ root.resizable(0,0) # This functions don't allow the windows to be resized
 icon = PhotoImage(file=os.path.join(program_directory,"sunglasses.png"))
 root.iconphoto(False, icon)
 
-# Functionsa
+# Functions
 
 def click(number):
     #text_box.delete(0, END)                               

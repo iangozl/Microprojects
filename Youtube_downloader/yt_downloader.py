@@ -1,15 +1,14 @@
 # With pytube
 # from pytube import YouTube
-import pytube
-
-import os
+import pytube 
+import os 
 import shutil # 
-import math
-import datetime
+import math 
+import datetime 
 
 # plots
 
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 # %matplotlib inline
 
 # image operation
