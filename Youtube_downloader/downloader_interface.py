@@ -3,8 +3,8 @@ from pytube import YouTube
 from tkinter import filedialog
 from PIL import ImageTk, Image
 
-from urllib.request import urlopen
-from io import BytesIO
+import requests
+import sys
 
 root = Tk()
 
@@ -24,7 +24,7 @@ def download():
     # path = root.filename
 
     # YouTube(link).streams.first().download(root.filename)
-    print(yt.streams)
+    # print(yt.streams)
 
     print(link)
 
@@ -36,25 +36,31 @@ def check():
     yt = YouTube(link)
     
     # Video title
-    url = yt.thumbnail_url
-    # with urlopen(url) as thumbnail
-    u = urlopen(url)
-    raw_data = u.read()
-    u.close()
-
-    im = Image.open(BytesIO(raw_data))
-
     yt_title = Label(root, text = yt.title)
-    yt_title.grid(row = 5)
+    yt_title.pack()
 
     # Video thumbnail
+    url = yt.thumbnail_url
+ 
 
+    print(url)
+
+    # try:
+    resp = requests.get(url, stream = True).raw
+    
+    # except requests.exceptions.RequestException as e:
+    #     sys.exit(1)
+
+    # try:
+    im = Image.open(resp)
     yt_thb = ImageTk.PhotoImage(im)
+
     yt_thb_label = Label(root, image = yt_thb)
-
-    yt_thb_label.grid(row = 6)
-
-
+    yt_thb_label.pack()
+    
+        # except IOError:
+        #     print("Unable to open image")
+        #     sys.exit(1)
 
 
 label_1 = Label(root, text = "Welcome to TheBestDownloader")
@@ -62,10 +68,15 @@ label_2 = Label(root, text = "Insert your link here")
 download_button = Button(root, text = "Download", command = download)
 check_button = Button(root, text = "Check Link", command = check)
 
-text_box.grid(row = 2)
-label_1.grid(row = 0)
-label_2.grid(row = 1)
-download_button.grid(row= 3)
-check_button.grid(row= 4)
+# text_box.grid(row = 2)
+# label_1.grid(row = 0)
+# label_2.grid(row = 1)
+# download_button.grid(row= 3)
+# check_button.grid(row= 4)
 
+text_box.pack()
+label_1.pack()
+label_2.pack()
+download_button.pack()
+check_button.pack()
 root.mainloop()
