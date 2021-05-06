@@ -3,8 +3,9 @@ from pytube import YouTube
 from tkinter import filedialog
 from PIL import ImageTk, Image
 
+import urllib.parse
+import io
 import requests
-import sys
 
 root = Tk()
 
@@ -47,20 +48,14 @@ def check():
 
     # try:
     resp = requests.get(url, stream = True).raw
-    
-    # except requests.exceptions.RequestException as e:
-    #     sys.exit(1)
-
-    # try:
+    # raw_data = urllib.request.urlopen(url).read()
     im = Image.open(resp)
-    yt_thb = ImageTk.PhotoImage(im)
+    yt_thb_label = Label(root)
+    yt_thb_label.image = ImageTk.PhotoImage(im)
+    yt_thb_label['image'] = yt_thb_label.image
 
-    yt_thb_label = Label(root, image = yt_thb)
-    yt_thb_label.pack()
     
-        # except IOError:
-        #     print("Unable to open image")
-        #     sys.exit(1)
+    yt_thb_label.pack()
 
 
 label_1 = Label(root, text = "Welcome to TheBestDownloader")
