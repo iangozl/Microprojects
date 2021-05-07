@@ -9,6 +9,13 @@ import requests
 root = Tk()
 root.geometry("500x500")
 
+"""
+    Objectives:
+
+    1) Make previous labels disappear, so I can put new ones
+
+"""
+
 # Text box
 
 text_box = Text(root, width=40, height=0.5, font = ("Helvetica", 15))
