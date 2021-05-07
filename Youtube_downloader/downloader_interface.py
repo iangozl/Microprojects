@@ -4,14 +4,14 @@ from tkinter import filedialog
 from PIL import ImageTk, Image
 
 import urllib.parse
-import io
 import requests
 
 root = Tk()
-
 root.geometry("500x500")
 
-text_box = Text(root, width=10, height=2, font = ("Helvetica", 20))
+# Text box
+
+text_box = Text(root, width=40, height=0.5, font = ("Helvetica", 15))
 
 # Functions
 
@@ -33,6 +33,9 @@ def download():
 
 def check():
 
+    # Clear previous image
+    # yt_thb_label['image'] = None
+
     link = text_box.get(1.0,END)
     yt = YouTube(link)
     
@@ -42,19 +45,16 @@ def check():
 
     # Video thumbnail
     url = yt.thumbnail_url
- 
 
-    print(url)
-
-    # try:
     resp = requests.get(url, stream = True).raw
-    # raw_data = urllib.request.urlopen(url).read()
     im = Image.open(resp)
+    # Resize 
+    resized = im.resize((320, 180), Image.ANTIALIAS)
+
     yt_thb_label = Label(root)
-    yt_thb_label.image = ImageTk.PhotoImage(im)
+    yt_thb_label.image = ImageTk.PhotoImage(resized)
     yt_thb_label['image'] = yt_thb_label.image
 
-    
     yt_thb_label.pack()
 
 
@@ -69,9 +69,11 @@ check_button = Button(root, text = "Check Link", command = check)
 # download_button.grid(row= 3)
 # check_button.grid(row= 4)
 
+label_2.pack()
 text_box.pack()
 label_1.pack()
-label_2.pack()
 download_button.pack()
 check_button.pack()
+
+# Everything
 root.mainloop()
