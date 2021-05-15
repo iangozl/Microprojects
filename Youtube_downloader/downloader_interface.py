@@ -12,7 +12,8 @@ root.geometry("500x500")
 """
     Objectives:
 
-    1) Make previous labels disappear, so I can put new ones
+    1) Make previous labels disappear, so I can put new ones (doing)
+    2) Save the VIDEOFILE into a correct filepath
 
 """
 
@@ -23,15 +24,24 @@ text_box = Text(root, width=40, height=0.5, font = ("Helvetica", 15))
 # Functions
 
 def download():
-    # link = text_box.get(1.0,END)
+    
+    filename = filedialog.asksaveasfile(title = "Save the file", defaultextension = '*.mp4',
+                                    filetypes = (("mp4 files","*.mp4"), ("all files","*.*")))
 
-    # yt = YouTube(link)
-    
-    root.filename = filedialog.asksaveasfilename(title = "Save the file", filetypes = (("mp4 files","*.mp4"), ("all files","*.*")))
-    
+    # Exception
+
+    if filename is None:
+        return
+
+    link = text_box.get(1.0,END)    
+ 
+    yt = YouTube(link)
+
     # path = root.filename
 
-    # YouTube(link).streams.first().download(root.filename)
+    video=  YouTube(link).streams.first().download(root.filename)
+    video.save(filename)
+    
     # print(yt.streams)
 
     print(link)
