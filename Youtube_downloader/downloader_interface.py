@@ -12,8 +12,12 @@ root.geometry("500x500")
 """
     Objectives:
 
-    1) Make previous labels disappear, so I can put new ones (doing)
-    2) Save the VIDEOFILE into a correct filepath
+    1) Make previous labels disappear, so I can put new ones (doing) 
+    2) Save the VIDEOFILE into a correct filepath 
+    3) Check the progress bar
+    4) How do I put a list into a display menu WHERE I can choose different options
+    5) What does each point thing after each point mean? How Do I read that?
+    6) How to read code?
 
 """
 
@@ -25,13 +29,18 @@ text_box = Text(root, width=40, height=0.5, font = ("Helvetica", 15))
 
 def download():
     
-    filename = filedialog.asksaveasfile(title = "Save the file", defaultextension = '*.mp4',
-                                    filetypes = (("mp4 files","*.mp4"), ("all files","*.*")))
+    # filename = filedialog.asksaveasfile()
+    """
+    title = "Save the file", defaultextension = '*.mp4',
+    filetypes = (("mp4 files","*.mp4"), ("all files","*.*")))
+    """
 
+    directory = filedialog.askdirectory()
+       
     # Exception
 
-    if filename is None:
-        return
+    # if filename is None:
+    #     return
 
     link = text_box.get(1.0,END)    
  
@@ -39,12 +48,18 @@ def download():
 
     # path = root.filename
 
-    video=  YouTube(link).streams.first().download(root.filename)
-    video.save(filename)
-    
+    video =  YouTube(link).streams.first()    
     # print(yt.streams)
 
-    print(link)
+    stream_list = list(yt.streams.filter(file_extension='mp4'))
+    
+    # stream = yt.streams.get_by_itag(18)
+    video.download(directory)
+
+    print(directory)
+
+    # print(stream_list)
+    # print(link)
 
 # Checks the link
 
