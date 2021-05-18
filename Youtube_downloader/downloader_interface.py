@@ -1,13 +1,21 @@
 from tkinter import *
+from bs4.element import Tag
 from pytube import YouTube
 from tkinter import filedialog
 from PIL import ImageTk, Image
 
 import urllib.parse
 import requests
+from bs4 import BeautifulSoup
+
 
 root = Tk()
 root.geometry("500x500")
+
+# Title 
+root.title("Cat's Youtube Downloader")
+
+
 
 """
     Objectives:
@@ -25,6 +33,13 @@ root.geometry("500x500")
 
 text_box = Text(root, width=40, height=0.5, font = ("Helvetica", 15))
 
+
+# Variable to keep track of the option
+# selected in OptionMenu
+value_inside = StringVar(root)
+value_inside.set("Select an Option")
+
+
 # Functions
 
 def download():
@@ -33,14 +48,15 @@ def download():
     """
     title = "Save the file", defaultextension = '*.mp4',
     filetypes = (("mp4 files","*.mp4"), ("all files","*.*")))
+
     """
 
     directory = filedialog.askdirectory()
        
     # Exception
 
-    # if filename is None:
-    #     return
+    if directory is None:
+        return
 
     link = text_box.get(1.0,END)    
  
@@ -48,14 +64,20 @@ def download():
 
     # path = root.filename
 
-    video =  YouTube(link).streams.first()    
+    video =  YouTube(link).streams.first()
     # print(yt.streams)
 
-    stream_list = list(yt.streams.filter(file_extension='mp4'))
-    
-    # stream = yt.streams.get_by_itag(18)
-    video.download(directory)
+    soup = BeautifulSoup(value_inside,"lxml")
+    tag = soup.Stream
+    print(tag)
 
+    attribute = tag.attrs
+    print(attribute)
+
+    # stream = yt.streams.get_by_itag(18)
+    # video.download(directory)
+
+    print("Download Completed")
     print(directory)
 
     # print(stream_list)
@@ -64,6 +86,8 @@ def download():
 # Checks the link
 
 def check():
+
+    global stream_list
 
     # Clear previous image
     # yt_thb_label['image'] = None
@@ -89,6 +113,12 @@ def check():
 
     yt_thb_label.pack()
 
+    # Printing all options into text_space
+    stream_list = list(yt.streams.filter(file_extension='mp4'))
+    option_menu = OptionMenu(root, value_inside, *stream_list)
+    option_menu.pack()
+
+# Text 
 
 label_1 = Label(root, text = "Welcome to TheBestDownloader")
 label_2 = Label(root, text = "Insert your link here")
@@ -100,6 +130,7 @@ check_button = Button(root, text = "Check Link", command = check)
 # label_2.grid(row = 1)
 # download_button.grid(row= 3)
 # check_button.grid(row= 4)
+
 
 label_2.pack()
 text_box.pack()
