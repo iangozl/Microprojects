@@ -6,8 +6,7 @@ from PIL import ImageTk, Image
 
 import urllib.parse
 import requests
-from bs4 import BeautifulSoup
-
+import re
 
 root = Tk()
 root.geometry("500x500")
@@ -26,13 +25,13 @@ root.title("Cat's Youtube Downloader")
     4) How do I put a list into a display menu WHERE I can choose different options
     5) What does each point thing after each point mean? How Do I read that?
     6) How to read code?
+    7) How to use the re package
 
 """
 
 # Text box
 
 text_box = Text(root, width=40, height=0.5, font = ("Helvetica", 15))
-
 
 # Variable to keep track of the option
 # selected in OptionMenu
@@ -67,12 +66,9 @@ def download():
     video =  YouTube(link).streams.first()
     # print(yt.streams)
 
-    soup = BeautifulSoup(value_inside,"lxml")
-    tag = soup.Stream
-    print(tag)
-
-    attribute = tag.attrs
-    print(attribute)
+    stream_option = value_inside.get()
+    itag = re.search('"(.+?)"', stream_option)
+    print("itag= ", itag)
 
     # stream = yt.streams.get_by_itag(18)
     # video.download(directory)
@@ -113,7 +109,7 @@ def check():
 
     yt_thb_label.pack()
 
-    # Printing all options into text_space
+    # Display menu with all the STREAM options
     stream_list = list(yt.streams.filter(file_extension='mp4'))
     option_menu = OptionMenu(root, value_inside, *stream_list)
     option_menu.pack()
