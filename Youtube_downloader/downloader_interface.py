@@ -20,12 +20,14 @@ root.title("Cat's Youtube Downloader")
     Objectives:
 
     1) Make previous labels disappear, so I can put new ones (doing) 
-    2) Save the VIDEOFILE into a correct filepath 
-    3) Check the progress bar
+    2) Save the VIDEOFILE into a correct filepath (X)
+    3) Progress bar (ON TERMINAL) 
     4) How do I put a list into a display menu WHERE I can choose different options
     5) What does each point thing after each point mean? How Do I read that?
     6) How to read code?
     7) How to use the re package
+    8) change VIDEOFILE name and format to WHATEVER I want
+    9) Make a PROGRESS BAR
 
 """
 
@@ -42,13 +44,6 @@ value_inside.set("Select an Option")
 # Functions
 
 def download():
-    
-    # filename = filedialog.asksaveasfile()
-    """
-    title = "Save the file", defaultextension = '*.mp4',
-    filetypes = (("mp4 files","*.mp4"), ("all files","*.*")))
-
-    """
 
     directory = filedialog.askdirectory()
        
@@ -67,23 +62,24 @@ def download():
     # print(yt.streams)
 
     stream_option = value_inside.get()
-    itag = re.search('"(.+?)"', stream_option)
+    search = re.search('"(.*?)"', stream_option)
+
+    if search:
+        itag = int(search.group()[1:-1])
+    else:
+        return
+    
     print("itag= ", itag)
 
-    # stream = yt.streams.get_by_itag(18)
-    # video.download(directory)
+    stream = yt.streams.get_by_itag(itag)
+    video.download(directory)
 
     print("Download Completed")
-    print(directory)
-
-    # print(stream_list)
-    # print(link)
+    print("The video was DOWNLOADED TO: ", directory)
 
 # Checks the link
 
 def check():
-
-    global stream_list
 
     # Clear previous image
     # yt_thb_label['image'] = None
